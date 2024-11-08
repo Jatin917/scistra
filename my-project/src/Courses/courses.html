@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Listing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800">Available Courses</h1>
+        <div id="courseContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Courses will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Course card template -->
+    <template id="courseTemplate">
+        <div class="bg-white rounded-lg shadow-md p-6 space-y-4 hover:shadow-lg transition-shadow duration-300">
+            <div class="space-y-2">
+                <h2 class="text-blue-600 text-xl font-semibold course-title"></h2>
+                <p class="text-gray-600 course-subtitle"></p>
+            </div>
+            
+            <ul class="space-y-2 course-features">
+                <!-- Features will be dynamically inserted here -->
+            </ul>
+            
+            <p class="text-gray-600 text-sm free-content"></p>
+            
+            <div class="flex items-center justify-between mt-4">
+                <div class="space-y-1">
+                    <p class="text-gray-500 line-through original-price"></p>
+                    <p class="text-2xl font-bold text-blue-600 discounted-price"></p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="bg-red-500 text-white rounded-full px-3 py-1 text-sm discount"></span>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300">
+                        Enroll
+                    </button>
+                </div>
+            </div>
+            <!-- Admin Actions (Edit, Delete) -->
+            <div class="flex items-center space-x-2 mt-4"></div>
+        </div>
+    </template>
+
+    <!-- Edit form modal (hidden by default) -->
+    <div id="editForm" class="bg-gray-200 p-6 rounded-lg shadow-lg max-w-md mx-auto mt-8 hidden">
+        <h2 class="text-xl font-semibold mb-4">Edit Course</h2>
+        <label class="block mb-2">Title</label>
+        <input type="text" id="editTitle" class="w-full p-2 mb-4 border rounded">
+        
+        <label class="block mb-2">Description</label>
+        <textarea id="editDescription" class="w-full p-2 mb-4 border rounded"></textarea>
+        
+        <label class="block mb-2">Price</label>
+        <input type="number" id="editPrice" class="w-full p-2 mb-4 border rounded">
+        
+        <label class="block mb-2">Discount (%)</label>
+        <input type="number" id="editDiscount" class="w-full p-2 mb-4 border rounded">
+        
+        <button onclick="handleEditCourse()" class="bg-blue-600 text-white px-4 py-2 rounded">Save Changes</button>
+        <button onclick="closeEditForm()" class="bg-gray-500 text-white px-4 py-2 rounded ml-2">Cancel</button>
+    </div>
+
+    <script src="courses.js"></script>
+</body>
+</html>

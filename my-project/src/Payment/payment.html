@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-gray-800">Course Payment</h1>
+        
+        <!-- Course details will be displayed here -->
+        <div id="courseDetails" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+            <!-- Course details like title, price, etc. will be inserted dynamically -->
+        </div>
+
+        <!-- Payment button -->
+        <button id="payButton" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-300 mt-4">
+            Proceed to Payment
+        </button>
+    </div>
+
+    <script>
+        // Get the courseId from the URL query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        
+        // Simulate fetching course data (you can replace this with an API call)
+        async function fetchCourseDetails(courseId) {
+            // Simulate fetching course details by ID
+            const courseData = await fetch(`http://127.0.0.1:3000/app/v1/client/course/get/${courseId}`)
+                .then(response => response.json())
+                .catch(error => console.error('Error fetching course data:', error));
+
+            return courseData;
+        }
+
+        // Function to display course details
+        async function displayCourseDetails() {
+            const course = await fetchCourseDetails(courseId);
+            const courseDetailsContainer = document.getElementById('courseDetails');
+            
+            if (course) {
+                // Insert course details dynamically into the page
+                courseDetailsContainer.innerHTML = `
+                    <h2 class="text-xl font-semibold text-blue-600">${course.title}</h2>
+                    <p class="text-gray-600">${course.discription}</p>
+                    <p class="text-xl font-bold text-blue-600">₹ ${course.price}</p>
+                    <p class="text-sm text-gray-500">Discount: ${course.discount}% OFF</p>
+                `;
+            } else {
+                courseDetailsContainer.innerHTML = '<p class="text-red-500">Course not found.</p>';
+            }
+        }
+
+        // Call the displayCourseDetails function on page load
+        displayCourseDetails();
+
+        // Handle payment button click
+        document.getElementById('payButton').addEventListener('click', () => {
+            // Redirect to a payment gateway or process payment
+            alert('Redirecting to payment gateway...');
+            // Replace with actual payment redirection logic or API call
+            window.location.href = `http://payment-gateway-url.com?courseId=${courseId}`;
+        });
+    </script>
+</body>
+</html>

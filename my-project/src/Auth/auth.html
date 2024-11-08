@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Welcome</h2>
+
+        <!-- Tab buttons for Sign In and Sign Up -->
+        <div class="flex justify-center mb-6">
+            <button id="signInTab" class="text-blue-600 font-semibold mr-4">Sign In</button>
+            <button id="signUpTab" class="text-gray-500">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <form id="signInForm" class="space-y-4" style="display: block;">
+            <label class="block">
+                <span class="text-gray-700">Email</span>
+                <input type="email" id="signInEmail" required class="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Password</span>
+                <input type="password" id="signInPassword" required class="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+            </label>
+            <button type="button" onclick="handleSignIn()" class="w-full bg-blue-600 text-white px-4 py-2 rounded-md mt-4">Sign In</button>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="signUpForm" class="space-y-4" style="display: none;">
+            <label class="block">
+                <span class="text-gray-700">Email</span>
+                <input type="email" id="signUpEmail" required class="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Password</span>
+                <input type="password" id="signUpPassword" required class="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+            </label>
+            <label class="block">
+                <span class="text-gray-700">Role</span>
+                <select id="signUpRole" class="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+                    <option value="USER">User</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+            </label>
+            <button type="button" onclick="handleSignUp()" class="w-full bg-green-600 text-white px-4 py-2 rounded-md mt-4">Sign Up</button>
+        </form>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
